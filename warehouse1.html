@@ -1,40 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Warehouses - CoreInventory</title>
-    <link rel="stylesheet" href="product.css"> </head>
+    <title>Warehouses - Core Inventory</title>
+    <link rel="stylesheet" href="product.css">
+</head>
 <body>
-<div class="sidebar">
-    <h2>Inventory</h2>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="products.html">Products</a>
-    <a href="receipts.html">Receipts</a>
-    <a href="delivery.html">Delivery</a>
-    <a href="transfer.html">Transfer</a>
-    <a href="adjustment.html">Adjustment</a>
-    <a href="history.html">History</a>
-    <a href="warehouse1.html">Warehouses</a>
-    <a href="login.html" id="Logout">Logout</a>
-</div>
-
-<div class="main">
-    <h1>Warehouse Management</h1>
-    <div class="form-card">
-        <h3>Add Warehouse</h3>
-        <input type="text" id="wName" placeholder="Warehouse Name">
-        <input type="text" id="wLoc" placeholder="Location">
-        <input type="text" id="wMgr" placeholder="Manager">
-        <button onclick="addWarehouse()">+ Add Warehouse</button>
+    <div class="sidebar">
+        <h2>Inventory</h2>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="products.html">Products</a>
+        <a href="receipts.html">Receipts</a>
+        <a href="delivery.html">Delivery</a>
+        <a href="transfer.html">Transfer</a>
+        <a href="adjustment.html">Adjustment</a>
+        <a href="history.html">History</a>
+        <a href="warehouse1.html">Warehouses</a>
+        <a href="login.html" id="Logout">Logout</a>
     </div>
 
-    <table>
-        <thead>
-            <tr><th>Warehouse Name</th><th>Location</th><th>Manager</th><th>Actions</th></tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</div>
-<script src="script.js"></script>
+    <div class="main">
+        <h1>Warehouse Management</h1>
+        
+        <div class="form-card">
+            <h3>Add New Warehouse</h3>
+            <div class="form-group">
+                <input type="text" id="wName" placeholder="Warehouse Name">
+                <input type="text" id="wLoc" placeholder="Location (City/State)">
+                <input type="text" id="wMgr" placeholder="Manager Name">
+                <button onclick="addWarehouse()">+ Add Warehouse</button>
+            </div>
+        </div>
+
+        <h2>Existing Warehouses</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Warehouse Name</th>
+                    <th>Location</th>
+                    <th>Manager</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

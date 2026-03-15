@@ -1,44 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Inventory Adjustment</title>
+    <title>Stock Adjustment - Core Inventory</title>
     <link rel="stylesheet" href="product.css">
 </head>
 <body>
-<div class="sidebar">
-    <h2>Inventory</h2>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="products.html">Products</a>
-    <a href="receipts.html">Receipts</a>
-    <a href="delivery.html">Delivery</a>
-    <a href="transfer.html">Transfer</a>
-    <a href="adjustment.html">Adjustment</a>
-    <a href="history.html">History</a>
-    <a href="warehouse1.html">Warehouses</a>
-    <a href="login.html" id="Logout">Logout</a>
-</div>
-
-<div class="main">
-    <h1>Inventory Adjustment</h1>
-    <div class="form-card">
-        <h3>Adjust Stock</h3>
-        <input type="text" id="aProduct" placeholder="Product Name">
-        <input type="text" id="aWh" placeholder="Warehouse">
-        <input type="number" id="aSysQty" placeholder="System Quantity">
-        <input type="number" id="aActQty" placeholder="Actual Quantity">
-        <input type="text" id="aReason" placeholder="Reason">
-        <button onclick="addAdjustment()">Adjust Stock</button>
+    <div class="sidebar">
+        <h2>Inventory</h2>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="products.html">Products</a>
+        <a href="receipts.html">Receipts</a>
+        <a href="delivery.html">Delivery</a>
+        <a href="transfer.html">Transfer</a>
+        <a href="adjustment.html">Adjustment</a>
+        <a href="history.html">History</a>
+        <a href="warehouse1.html">Warehouses</a>
+        <a href="login.html" id="Logout">Logout</a>
     </div>
 
-    <h2>Adjustment History</h2>
-    <table>
-        <thead>
-            <tr><th>Date</th><th>Product</th><th>Warehouse</th><th>System Qty</th><th>Actual Qty</th><th>Reason</th></tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</div>
-<script src="script.js"></script>
+    <div class="main">
+        <h1>Inventory Adjustment</h1>
+        <div class="form-card">
+            <h3>Correct Stock Levels</h3>
+            <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 15px;">
+                Use this to manually set the stock level if the physical count differs from the system.
+            </p>
+            <input type="text" id="aProduct" placeholder="Product Name">
+            <input type="text" id="aWh" placeholder="Warehouse">
+            <input type="number" id="aQty" placeholder="Actual Physical Qty">
+            <input type="text" id="aReason" placeholder="Reason (e.g., Damage/Loss)">
+            <button onclick="addAdjustment()">Update Stock</button>
+        </div>
+
+        <h2>Adjustment History</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Product</th>
+                    <th>Warehouse</th>
+                    <th>New Qty</th>
+                    <th>Reason</th>
+                </tr>
+            </thead>
+            <tbody id="adjustmentTableBody">
+                </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Internal logic for Adjustment page
+        async function addAdjustment() {
+            const product = document.getElementById('aProduct').value;
+            const warehouse = document.getElementById('aWh').value;
+            const actual_qty = document.getElementById('aQty').value;
+            const reason = document.getElementById('aReason').value;
+            const date = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+
+            if(!product || !actual_qty) {
+                alert("Please enter at least the Product Name and Physical Quantity.");
+                return;
+            }
+
+            const res = await fetch('/api/adjustments', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ product, warehouse, actual_qty, reason, date })
+            });
+
+            const data = await res.json();
+            if(data.success) {
+                alert("Stock level adjusted successfully!");
+                location.reload();
+            } else {
+                alert("Adjustment failed. Ensure the product name is correct.");
+            }
+        }
+    </script>
 </body>
 </html>

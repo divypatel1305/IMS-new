@@ -1,97 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>CoreInventory - Login</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .login-container {
-            max-width: 400px;
-            margin: 80px auto;
-            padding: 30px;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        body { background-color: #f8fafc; font-family: sans-serif; }
+        .login-container { 
+            max-width: 400px; 
+            margin: 100px auto; 
+            padding: 40px; 
+            background: white;
+            border-radius: 12px; 
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); 
         }
-
-        #signupSection {
-            display: none;
+        h2 { text-align: center; color: #1e293b; margin-bottom: 30px; }
+        h3 { margin-bottom: 20px; color: #334155; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem; }
+        input { 
+            width: 100%; padding: 12px; margin-bottom: 20px; 
+            border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; 
         }
-
-        .toggle-link {
-            color: #2563eb;
-            cursor: pointer;
-            font-weight: bold;
+        button { 
+            width: 100%; padding: 12px; background: #2563eb; color: white; 
+            border: none; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold;
         }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-sizing: border-box;
-        }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #2563eb;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+        button:hover { background: #1d4ed8; }
+        .toggle-link { color: #2563eb; cursor: pointer; font-weight: bold; text-decoration: underline; }
+        .text-center { text-align: center; margin-top: 20px; font-size: 0.9rem; }
     </style>
 </head>
-
 <body>
     <div class="login-container">
-        <h2 style="text-align: center;">CoreInventory</h2>
+        <h2>CoreInventory</h2>
 
         <div id="loginSection">
             <h3>Login</h3>
-            <form onsubmit="handleLogin(event)">
+            <form id="loginForm">
                 <label>Email</label>
-                <input type="email" id="loginEmail" placeholder="Enter email" required>
+                <input type="email" id="loginEmail" placeholder="name@company.com" required>
                 <label>Password</label>
-                <input type="password" id="loginPass" placeholder="Enter password" required>
+                <input type="password" id="loginPass" placeholder="••••••••" required>
                 <button type="submit">Login</button>
             </form>
-            <p style="text-align: center; margin-top: 15px;">New user? <span class="toggle-link"
-                    onclick="toggleForms()">Register here</span></p>
+            <p class="text-center">New user? <span class="toggle-link" onclick="toggleForms()">Register here</span></p>
         </div>
 
-        <div id="signupSection">
-            <h3>Register</h3>
-            <form onsubmit="handleSignup(event)">
-                <label>Email ID</label>
-                <input type="email" id="signupEmail" placeholder="Enter your email" required>
-                <label>Create Password</label>
-                <input type="password" id="signupPass" placeholder="Create password" required>
-                <button type="submit" style="background: #22c55e;">Sign Up</button>
+        <div id="signupSection" style="display: none;">
+            <h3>Create Account</h3>
+            <form id="signupForm">
+                <label>Email Address</label>
+                <input type="email" id="signupEmail" placeholder="your@email.com" required>
+                <label>Choose Password</label>
+                <input type="password" id="signupPass" placeholder="Create a strong password" required>
+                <button type="submit" style="background: #10b981;">Sign Up</button>
             </form>
-            <p style="text-align: center; margin-top: 15px;">Already have an account? <span class="toggle-link"
-                    onclick="toggleForms()">Login here</span></p>
+            <p class="text-center">Already have an account? <span class="toggle-link" onclick="toggleForms()">Login here</span></p>
         </div>
     </div>
 
     <script src="script.js"></script>
     <script>
+        // Ensure session is cleared when arriving at login page
+        localStorage.removeItem("isLoggedIn");
+
         function toggleForms() {
-            const loginSection = document.getElementById('loginSection');
-            const signupSection = document.getElementById('signupSection');
-            if (loginSection.style.display === "none") {
-                loginSection.style.display = "block";
-                signupSection.style.display = "none";
+            const login = document.getElementById('loginSection');
+            const signup = document.getElementById('signupSection');
+            if (login.style.display === "none") {
+                login.style.display = "block";
+                signup.style.display = "none";
             } else {
-                loginSection.style.display = "none";
-                signupSection.style.display = "block";
+                login.style.display = "none";
+                signup.style.display = "block";
             }
         }
+
+        // Handle Login
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPass').value;
+            
+            const res = await fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            
+            if (res.ok) {
+                localStorage.setItem("isLoggedIn", "true");
+                window.location.replace("dashboard.html");
+            } else {
+                alert("Invalid email or password. Please try again.");
+            }
+        });
+
+        // Handle Signup
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPass').value;
+            
+            const res = await fetch('/api/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            
+            const data = await res.json();
+            if (data.success) {
+                alert("Account created successfully! You can now login.");
+                toggleForms();
+            } else {
+                alert(data.message || "Signup failed. Email might already exist.");
+            }
+        });
     </script>
 </body>
-
 </html>

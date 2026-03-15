@@ -1,43 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Transfer - Core Inventory</title>
+    <title>Stock Transfer - Core Inventory</title>
     <link rel="stylesheet" href="product.css">
 </head>
 <body>
-<div class="sidebar">
-    <h2>Inventory</h2>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="products.html">Products</a>
-    <a href="receipts.html">Receipts</a>
-    <a href="delivery.html">Delivery</a>
-    <a href="transfer.html">Transfer</a>
-    <a href="adjustment.html">Adjustment</a>
-    <a href="history.html">History</a>
-    <a href="warehouse1.html">Warehouses</a>
-    <a href="login.html" id="Logout">Logout</a>
-</div>
-
-<div class="main">
-    <h1>Internal Transfer</h1>
-    <div class="form-card">
-        <h3>Transfer Product</h3>
-        <input type="text" id="tProduct" placeholder="Product Name">
-        <input type="number" id="tQty" placeholder="Quantity">
-        <input type="text" id="tFromWh" placeholder="From Warehouse">
-        <input type="text" id="tToWh" placeholder="To Warehouse">
-        <button onclick="addTransfer()">Transfer Product</button>
+    <div class="sidebar">
+        <h2>Inventory</h2>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="products.html">Products</a>
+        <a href="receipts.html">Receipts</a>
+        <a href="delivery.html">Delivery</a>
+        <a href="transfer.html">Transfer</a>
+        <a href="adjustment.html">Adjustment</a>
+        <a href="history.html">History</a>
+        <a href="warehouse1.html">Warehouses</a>
+        <a href="login.html" id="Logout">Logout</a>
     </div>
 
-    <h2>Transfer History</h2>
-    <table>
-        <thead>
-            <tr><th>Date</th><th>Product</th><th>Quantity</th><th>From</th><th>To</th></tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</div>
-<script src="script.js"></script>
+    <div class="main">
+        <h1>Stock Transfer</h1>
+        <div class="form-card">
+            <h3>Move Stock Between Warehouses</h3>
+            <input type="text" id="tProduct" placeholder="Product Name">
+            <input type="number" id="tQty" placeholder="Quantity">
+            <input type="text" id="tFrom" placeholder="From Warehouse">
+            <input type="text" id="tTo" placeholder="To Warehouse">
+            <button onclick="addTransfer()">Execute Transfer</button>
+        </div>
+
+        <h2>Transfer Records</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>From</th>
+                    <th>To</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Specific local function for Transfers if not fully handled in main script
+        async function addTransfer() {
+            const product = document.getElementById('tProduct').value;
+            const quantity = document.getElementById('tQty').value;
+            const from_wh = document.getElementById('tFrom').value;
+            const to_wh = document.getElementById('tTo').value;
+            const date = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+
+            if(!product || !quantity || !from_wh || !to_wh) {
+                alert("Please fill all fields");
+                return;
+            }
+
+            const res = await fetch('/api/transfers', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ product, quantity, from_wh, to_wh, date })
+            });
+
+            const data = await res.json();
+            if(data.success) location.reload();
+            else alert("Transfer failed.");
+        }
+
+        // Load specific transfer table data
+        window.addEventListener('load', () => {
+            if(window.location.pathname.includes('transfer.html')) {
+                loadTableData('history', ['date', 'product', 'quantity', 'warehouse']).then(() => {
+                    // Filter logic can be added here if you only want 'Transfer' types
+                });
+            }
+        });
+    </script>
 </body>
 </html>
