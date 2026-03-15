@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Products - Core Inventory</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Inventory</h2>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="products.html">Products</a>
+        <a href="receipts.html">Receipts</a>
+        <a href="delivery.html">Delivery</a>
+        <a href="transfer.html">Transfer</a>
+        <a href="adjustment.html">Adjustment</a>
+        <a href="history.html">History</a>
+        <a href="warehouse1.html">Warehouses</a>
+        <a href="login.html" id="Logout">Logout</a>
+    </div>
+
+    <div class="main">
+        <h1>Products</h1>
+        <div class="form-card">
+            <h3>Add Product</h3>
+            <input type="text" id="pName" placeholder="Product Name">
+            <input type="text" id="pSku" placeholder="SKU">
+            <input type="text" id="pCat" placeholder="Category">
+            <input type="text" id="pUnit" placeholder="Unit">
+            <input type="number" id="pStock" placeholder="Stock Quantity">
+            <button onclick="addProduct()">Add Product</button>
+        </div>
+
+        <h2>Product List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>SKU</th>
+                    <th>Category</th>
+                    <th>Unit</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

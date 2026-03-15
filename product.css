@@ -1,0 +1,137 @@
+body{
+margin:0;
+font-family:Arial;
+background:#f4f6fb;
+display:flex;
+}
+
+/* Sidebar */
+
+.sidebar{
+width:220px;
+background:linear-gradient(180deg,#1e293b,#0f172a);
+color:white;
+height:100vh;
+padding-top:20px;
+}
+
+.sidebar h2{
+text-align:center;
+margin-bottom:30px;
+}
+
+.sidebar a{
+display:block;
+padding:12px 20px;
+color:white;
+text-decoration:none;
+}
+
+.sidebar a:hover{
+background:rgb(110,108,105);
+color:lightblue;
+}
+
+/* Logout hover */
+
+#Logout:hover{
+color:red;
+}
+
+/* Main Area */
+
+.main{
+flex:1;
+padding:30px;
+}
+
+/* Dashboard Cards */
+
+.cards{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:12px;
+width:200px;
+box-shadow:0 4px 15px rgba(0,0,0,0.1);
+text-align:center;
+}
+
+.card h3{
+margin:0;
+color:#555;
+}
+
+.card p{
+font-size:28px;
+margin-top:10px;
+color:#2563eb;
+}
+
+/* Form */
+
+.form-card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 15px rgba(0,0,0,0.1);
+max-width:400px;
+margin-bottom:30px;
+}
+
+.form-card input{
+width:100%;
+padding:10px;
+margin-bottom:12px;
+border-radius:6px;
+border:1px solid #ddd;
+}
+
+.form-card button{
+width:100%;
+padding:10px;
+background:#2563eb;
+border:none;
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+
+.form-card button:hover{
+background:#1d4ed8;
+}
+
+/* Table Fix */
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 4px 15px rgba(0,0,0,0.1);
+table-layout:fixed;
+}
+
+th, td{
+padding:12px;
+text-align:left;
+}
+
+th{
+background:#1e293b;
+color:white;
+}
+
+td{
+border-bottom:1px solid #eee;
+}
+
+tr:hover{
+background:#f1f5f9;
+}

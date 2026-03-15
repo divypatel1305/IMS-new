@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Delivery - Core Inventory</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+<div class="sidebar">
+    <h2>Inventory</h2>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="products.html">Products</a>
+    <a href="receipts.html">Receipts</a>
+    <a href="delivery.html">Delivery</a>
+    <a href="transfer.html">Transfer</a>
+    <a href="adjustment.html">Adjustment</a>
+    <a href="history.html">History</a>
+    <a href="warehouse1.html">Warehouses</a>
+    <a href="login.html" id="Logout">Logout</a>
+</div>
+
+<div class="main">
+    <h1>Delivery Orders</h1>
+    <div class="form-card">
+        <h3>Create Delivery</h3>
+        <input type="text" id="dCustomer" placeholder="Customer Name">
+        <input type="text" id="dProduct" placeholder="Product Name">
+        <input type="number" id="dQty" placeholder="Quantity">
+        <input type="text" id="dWh" placeholder="Warehouse">
+        <button onclick="addDelivery()">Create Delivery</button>
+    </div>
+
+    <h2>Delivery List</h2>
+    <table>
+        <thead>
+            <tr><th>Date</th><th>Customer</th><th>Product</th><th>Quantity</th><th>Warehouse</th></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

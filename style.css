@@ -1,0 +1,170 @@
+body{
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin:0;
+}
+
+/* Login / Forgot / Reset page center layout */
+.login-page{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+/* Login container */
+.login-container{
+    background:white;
+    padding:40px;
+    width:320px;
+    border-radius:8px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:5px;
+}
+
+.subtitle{
+    text-align:center;
+    color:gray;
+    margin-bottom:25px;
+}
+
+label{
+    font-size:14px;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0 18px 0;
+    border:1px solid #ccc;
+    border-radius:4px;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:#2c7be5;
+    color:white;
+    border:none;
+    border-radius:4px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1a68d1;
+}
+
+.forgot{
+    text-align:center;
+    margin-top:10px;
+}
+
+.forgot a{
+    text-decoration:none;
+    color:#2c7be5;
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:220px;
+    height:100vh;
+    background:#2c3e50;
+    color:white;
+    position:fixed;
+    left:0;
+    top:0;
+    padding:20px;
+}
+
+.sidebar h2{
+    margin-bottom:20px;
+}
+
+.sidebar ul{
+    list-style:none;
+    padding:0;
+}
+
+.sidebar li{
+    padding:10px 0;
+    cursor:pointer;
+}
+
+.sidebar li:hover{
+    color:#1abc9c;
+}
+
+/* Main Content */
+
+.main-content{
+    margin-left:240px;
+    padding:20px;
+}
+
+/* Dashboard Cards */
+
+.cards{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    width:200px;
+    border-radius:8px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+    text-align:center;
+}
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+background:white;
+}
+
+th, td{
+padding:12px;
+border-bottom:1px solid #ddd;
+text-align:left;
+}
+
+th{
+background:#f2f2f2;
+}
+
+.add-btn{
+background:#2c7be5;
+color:white;
+padding:10px 15px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+margin-bottom:15px;
+}
+
+.edit-btn{
+background:#f0ad4e;
+color:white;
+border:none;
+padding:6px 10px;
+border-radius:4px;
+cursor:pointer;
+}
+
+.delete-btn{
+background:#d9534f;
+color:white;
+border:none;
+padding:6px 10px;
+border-radius:4px;
+cursor:pointer;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Core Inventory Dashboard</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Inventory</h2>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="products.html">Products</a>
+        <a href="receipts.html">Receipts</a>
+        <a href="delivery.html">Delivery</a>
+        <a href="transfer.html">Transfer</a>
+        <a href="adjustment.html">Adjustment</a>
+        <a href="history.html">History</a>
+        <a href="warehouse1.html">Warehouses</a>
+        <a href="login.html" id="Logout">Logout</a>
+    </div>
+
+    <div class="main">
+        <h1>Dashboard</h1>
+        <div class="cards">
+            <div class="card">
+                <h3>Total Products</h3>
+                <p id="totalP">0</p>
+            </div>
+            <div class="card">
+                <h3>Low Stock</h3>
+                <p id="lowStock">0</p>
+            </div>
+            <div class="card">
+                <h3>Receipts Today</h3>
+                <p id="totalR">0</p>
+            </div>
+            <div class="card">
+                <h3>Deliveries Today</h3>
+                <p id="totalD">0</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

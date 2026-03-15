@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CoreInventory - Login</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 80px auto;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        #signupSection {
+            display: none;
+        }
+
+        .toggle-link {
+            color: #2563eb;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2 style="text-align: center;">CoreInventory</h2>
+
+        <div id="loginSection">
+            <h3>Login</h3>
+            <form onsubmit="handleLogin(event)">
+                <label>Email</label>
+                <input type="email" id="loginEmail" placeholder="Enter email" required>
+                <label>Password</label>
+                <input type="password" id="loginPass" placeholder="Enter password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p style="text-align: center; margin-top: 15px;">New user? <span class="toggle-link"
+                    onclick="toggleForms()">Register here</span></p>
+        </div>
+
+        <div id="signupSection">
+            <h3>Register</h3>
+            <form onsubmit="handleSignup(event)">
+                <label>Email ID</label>
+                <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                <label>Create Password</label>
+                <input type="password" id="signupPass" placeholder="Create password" required>
+                <button type="submit" style="background: #22c55e;">Sign Up</button>
+            </form>
+            <p style="text-align: center; margin-top: 15px;">Already have an account? <span class="toggle-link"
+                    onclick="toggleForms()">Login here</span></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleForms() {
+            const loginSection = document.getElementById('loginSection');
+            const signupSection = document.getElementById('signupSection');
+            if (loginSection.style.display === "none") {
+                loginSection.style.display = "block";
+                signupSection.style.display = "none";
+            } else {
+                loginSection.style.display = "none";
+                signupSection.style.display = "block";
+            }
+        }
+    </script>
+</body>
+
+</html>
